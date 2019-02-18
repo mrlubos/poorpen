@@ -4,6 +4,7 @@
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
+    "build": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Lubos",
@@ -12,6 +13,6 @@
     "browser-sync": "^2.13.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
-    "gulp-uglify": "^2.0.0"
+    "gulp-uglify-es": "^1.0.4"
   }
 }

@@ -1,19 +1,19 @@
-const browserSync = require('browser-sync').create();
-const gulp = require('gulp');
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
+const browserSync = require('browser-sync').create()
+const gulp = require('gulp')
+const concat = require('gulp-concat')
+const uglify = require('gulp-uglify-es').default
 
-const reload = browserSync.reload;
+const reload = browserSync.reload
 
 gulp.task('build', () => gulp.src('./src/**.js')
   .pipe(concat('PoorPen.min.js'))
   .pipe(uglify())
-  .pipe(gulp.dest('./build/')));
+  .pipe(gulp.dest('./build/')))
 
 gulp.task('watch', ['build'], () => {
-	gulp.watch('./src/**.js', ['build']).on('change', reload);
-});
+	gulp.watch('./src/**.js', ['build']).on('change', reload)
+})
 
 gulp.task('default', ['watch'], () => {
-	return console.log('Gulp is running!');
-});
+	return console.log('Gulp is running!')
+})
