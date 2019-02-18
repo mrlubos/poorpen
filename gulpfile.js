@@ -1,21 +1,19 @@
-var gulp        = require('gulp'),
-	browserSync = require('browser-sync').create(),
-	reload      = browserSync.reload;
+const browserSync = require('browser-sync').create();
+const gulp = require('gulp');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
 
-var concat     = require('gulp-concat'),
-	uglify     = require('gulp-uglify');
+const reload = browserSync.reload;
 
-gulp.task('scripts', function () {
-	return gulp.src('./src/**.js')
-			.pipe(concat('PoorPen.min.js'))
-			.pipe(uglify())
-			.pipe(gulp.dest('./build/'));
+gulp.task('build', () => gulp.src('./src/**.js')
+  .pipe(concat('PoorPen.min.js'))
+  .pipe(uglify())
+  .pipe(gulp.dest('./build/')));
+
+gulp.task('watch', ['build'], () => {
+	gulp.watch('./src/**.js', ['build']).on('change', reload);
 });
 
-gulp.task('watch', ['scripts'], function () {
-	gulp.watch('./src/**.js', ['scripts']).on('change', reload);
-});
-
-gulp.task('default', ['watch'], function () {
+gulp.task('default', ['watch'], () => {
 	return console.log('Gulp is running!');
 });
